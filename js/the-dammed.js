@@ -47,7 +47,7 @@
 	function handleScroll() {
 		updateScrollPositions();
 		calculateBackgroundColor();
-		$( 'body' ).css( 'backgroundColor', 'rgb(' + currentBackgroundColor.r + ', ' + currentBackgroundColor.g + ', ' + currentBackgroundColor.b + ')' );
+		$( 'body' ).css( 'backgroundColor', 'rgb(' + Math.floor( currentBackgroundColor.r ) + ', ' + Math.floor( currentBackgroundColor.g ) + ', ' + Math.floor( currentBackgroundColor.b ) + ')' );
 		if ( $scrollPort.scrollTop() >= maxScrollTop - 100 ) {
 			dammedButton.fadeOut();
 		} else {
@@ -94,8 +94,9 @@
 	}
 
 	$( document ).ready( function() {
+		const isSafari = /^((?!chrome|android).)*safari/i.test( navigator.userAgent );
 		setCards();
-		$scrollPort = $( 'html, body' );
+		$scrollPort = isSafari ? $( 'body' ) : $( 'html, body' );
 		$window = $( window );
 		dammedDate = $( '#dammed-date' );
 		dammedButton = $( '#dammed-button' );
