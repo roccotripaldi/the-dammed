@@ -30,7 +30,6 @@ function the_dammed_get_cover_art() {
 }
 
 function the_dammed_update_album_info( $post_id ) {
-	l( 'ALERT: updating album info' );
 	$content = trim( strip_tags( get_the_content() ) );
 	$album_info_array = explode( ':', $content );
 	$artist = trim( $album_info_array[0] );
@@ -42,7 +41,6 @@ function the_dammed_update_album_info( $post_id ) {
 }
 
 function the_dammed_set_spotify_access_token() {
-	l( 'ALERT: we are updating the spotify access token!' );
 	$args = array(
 		'headers' => array(
 			'Authorization' => 'Basic ' . base64_encode( SPOTIFY_API_CLIENT_ID . ':' . SPOTIFY_API_CLIENT_SECRET ),
