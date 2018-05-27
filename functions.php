@@ -3,7 +3,7 @@
 require_once ( get_template_directory() . '/config.php' );
 
 function the_dammed_scripts() {
-	wp_enqueue_style( 'the-dammed-style', get_stylesheet_uri(), array(), null );
+	wp_enqueue_style( 'the-dammed-style', get_stylesheet_uri(), array() );
 	wp_enqueue_script( 'the-dammed-js', get_template_directory_uri() . '/js/the-dammed.js', array( 'jquery') );
 }
 add_action( 'wp_enqueue_scripts', 'the_dammed_scripts' );
@@ -86,19 +86,30 @@ function the_dammed_update_spotify_info( $post_id, $artist, $album ) {
 	return $spotify_info;
 }
 
-if ( ! get_transient( 'spotify_access_token' ) ) {
-	the_dammed_set_spotify_access_token();
+function get_gorgeous_thing() {
+	$gorgeous_things = array(
+		'a sunset in Sintra',
+		'a bag of Fritos Twists &trade;',
+		'a ladybird on a window sill',
+		'a cellar door',
+		'your first Okonomiyaki',
+		'a ski trip to Tuckerman Ravine',
+		'a cabin in Barra de Valizas',
+		'a pancake in Amsterdam',
+		'a seal in La Jolla',
+		'a cicada at the Lincoln Memorial',
+		'a striped bass at Old Orchard Beach',
+		'a glade at Sugarloaf',
+		'a plate of lomo saltado in Lima',
+		'a riverside picnic in Paris',
+		'a warm bag of chestnuts in Lisbon',
+		'a plate of patatas bravas in Madrid',
+		'a ferry ride to Bowen Island'
+	);
+	$gorgeous_things = apply_filters( 'dammed_gorgeous_things', $gorgeous_things );
+	return $gorgeous_things[ mt_rand( 0, count( $gorgeous_things ) - 1 ) ];
 }
 
-if ( isset( $_GET['spotify'] ) ) {
-	$args = array(
-		'headers' => array(
-			'Authorization' => 'Bearer ' . get_transient( 'spotify_access_token' )
-		)
-	);
-	$response = wp_remote_get( 'https://api.spotify.com/v1/search?query=Life%20and%20Livin%27%20It%20Sinkane&type=album&limit=1', $args );
-	$array = json_decode( wp_remote_retrieve_body( $response ) );
-	echo '<pre>';
-	print_r( $array );
-	exit;
+if ( ! get_transient( 'spotify_access_token' ) ) {
+	the_dammed_set_spotify_access_token();
 }

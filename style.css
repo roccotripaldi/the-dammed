@@ -277,6 +277,29 @@ body {
     color: #FFF;
 }
 
+#dammed-app {
+    position: relative;
+    z-index: 1;
+    display: none;
+}
+
+#dammed-loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #909090;
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+#dammed-loader p {
+    width: 80%;
+}
+
 .dark-text {
     color: #707070;
 }

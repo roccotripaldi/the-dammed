@@ -93,6 +93,12 @@
 		$( '#date' ).text( date.toLocaleDateString( 'uk-UK', options ) );
 	}
 
+	function removeLoader() {
+		$( '#dammed-app' ).css( 'display', 'block' );
+		$window.resize();
+		$( '#dammed-loader' ).fadeOut( 3000 );
+	}
+
 	$( document ).ready( function() {
 		const isSafari = /^((?!chrome|android).)*safari/i.test( navigator.userAgent );
 		setCards();
@@ -113,9 +119,7 @@
 			.on( 'click', function() {
 				scrollNext();
 			} );
-		handleResize();
-		handleScroll();
-		setTimeout( handleResize, 2000 );
 		setInterval( updateClock, 1000 );
+		setTimeout( removeLoader, 5000 );
 	} );
 } )( jQuery );
