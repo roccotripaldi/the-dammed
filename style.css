@@ -323,6 +323,10 @@ header img {
     border-radius: 25px;
     font-size: 25px;
     z-index: 100;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #dammed-button:focus {

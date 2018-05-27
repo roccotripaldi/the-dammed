@@ -6,7 +6,7 @@
 
 <!-- end dammed-container --></div>
 
-<button id="dammed-button" class="dark-text box-shadow">&triangledown;</button>
+<a id="dammed-button" class="dark-text box-shadow">&triangledown;</a>
 
 </body>
 </html>
