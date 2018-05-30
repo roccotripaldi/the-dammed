@@ -424,8 +424,20 @@ a.page-numbers:hover {
     text-align: center;
 }
 
-img {
-    max-width: 300px;
+.type-swarm img {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    border: 1px solid #FFF;
+}
+
+.type-swarm a, .type-swarm a:visited {
+    color: yellow;
+    text-decoration: none;
+}
+
+.type-swarm a:hover {
+    color: white;
 }
 
 iframe, .EmbeddedTweet, twitterwidget {
@@ -480,5 +492,15 @@ iframe, .EmbeddedTweet, twitterwidget {
 
     .type-spotify .img-link img {
         width: 100%;
+    }
+
+    .type-swarm .dammed-content  {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .type-swarm img {
+        width: 50%;
     }
 }

@@ -1,44 +1,23 @@
 <?php
 
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Initializations
+2.0 Hooks & Filters
+3.0 Loop Functions
+4.0 Misc
+--------------------------------------------------------------*/
+
+
+
+
+/*--------------------------------------------------------------
+1.0 Initializations
+--------------------------------------------------------------*/
+
 require_once ( get_template_directory() . '/config.php' );
-
-function the_dammed_scripts() {
-	wp_enqueue_style( 'the-dammed-style', get_stylesheet_uri(), array() );
-	wp_enqueue_script( 'the-dammed-js', get_template_directory_uri() . '/js/the-dammed.js', array( 'jquery') );
-}
-add_action( 'wp_enqueue_scripts', 'the_dammed_scripts' );
-
 register_meta( 'post', 'album_info', array() );
-
-// Functions within THE LOOP
-function the_dammed_is_post_twitter_type() {
-	return has_term( 'tweets', 'category' ) &&
-	       ! has_term( 'todaystunes', 'post_tag' );
-}
-
-function the_dammed_is_post_spotify_type() {
-	return has_term( 'tweets', 'category' ) &&
-	       has_term( 'todaystunes', 'post_tag' );
-}
-
-function the_dammed_get_cover_art() {
-	$cover_art = get_attached_media( 'image' );
-	if ( empty( $cover_art ) ) {
-		return false;
-	}
-	return array_values( $cover_art )[0]->guid;
-}
-
-function the_dammed_update_album_info( $post_id ) {
-	$content = trim( strip_tags( get_the_content() ) );
-	$album_info_array = explode( ':', $content );
-	$artist = trim( $album_info_array[0] );
-	$album_array = explode( '"', html_entity_decode( $album_info_array[1] ) );
-	$album = trim( $album_array[1] );
-	$album_info = array( 'album' => $album, 'artist' => $artist );
-	update_post_meta( $post_id, 'album_info', $album_info );
-	return $album_info;
-}
 
 function the_dammed_set_spotify_access_token() {
 	$args = array(
@@ -58,6 +37,61 @@ function the_dammed_set_spotify_access_token() {
 	$body = wp_remote_retrieve_body( $response );
 	$response_array = json_decode( $body );
 	set_transient( 'spotify_access_token', $response_array->access_token,3540 );
+}
+
+if ( ! get_transient( 'spotify_access_token' ) ) {
+	the_dammed_set_spotify_access_token();
+}
+
+/*--------------------------------------------------------------
+2.0 Hooks & Filters
+--------------------------------------------------------------*/
+
+function the_dammed_scripts() {
+	wp_enqueue_style( 'the-dammed-style', get_stylesheet_uri(), array() );
+	wp_enqueue_script( 'the-dammed-js', get_template_directory_uri() . '/js/the-dammed.js', array( 'jquery') );
+}
+add_action( 'wp_enqueue_scripts', 'the_dammed_scripts' );
+
+/*--------------------------------------------------------------
+3.0 Loop Functions
+--------------------------------------------------------------*/
+
+function the_dammed_is_post_twitter_type() {
+	return has_term( 'tweets', 'category' ) &&
+	       ! has_term( 'todaystunes', 'post_tag' );
+}
+
+function the_dammed_is_post_spotify_type() {
+	return has_term( 'todaystunes', 'post_tag' );
+}
+
+function the_dammed_is_post_swarm_type() {
+	return has_term( 'check-ins', 'category' );
+}
+
+function the_dammed_get_cover_art() {
+	$cover_art = get_attached_media( 'image' );
+	if ( empty( $cover_art ) ) {
+		return false;
+	}
+	return array_values( $cover_art )[0]->guid;
+}
+
+
+/*--------------------------------------------------------------
+4.0 Misc
+--------------------------------------------------------------*/
+
+function the_dammed_update_album_info( $post_id ) {
+	$content = trim( strip_tags( get_the_content() ) );
+	$album_info_array = explode( ':', $content );
+	$artist = trim( $album_info_array[0] );
+	$album_array = explode( '"', html_entity_decode( $album_info_array[1] ) );
+	$album = trim( $album_array[1] );
+	$album_info = array( 'album' => $album, 'artist' => $artist );
+	update_post_meta( $post_id, 'album_info', $album_info );
+	return $album_info;
 }
 
 function the_dammed_update_spotify_info( $post_id, $artist, $album ) {
@@ -86,7 +120,7 @@ function the_dammed_update_spotify_info( $post_id, $artist, $album ) {
 	return $spotify_info;
 }
 
-function get_gorgeous_thing() {
+function the_dammed_get_gorgeous_thing() {
 	$gorgeous_things = array(
 		'a sunset in Sintra',
 		'a bag of Fritos Twists &trade;',
@@ -110,6 +144,13 @@ function get_gorgeous_thing() {
 	return $gorgeous_things[ mt_rand( 0, count( $gorgeous_things ) - 1 ) ];
 }
 
-if ( ! get_transient( 'spotify_access_token' ) ) {
-	the_dammed_set_spotify_access_token();
+function the_dammed_swarm_location( $swarm_data ) {
+	$location = $swarm_data->venue->location->city . ', ';
+	if( $swarm_data->venue->location->city !== $swarm_data->venue->location->state ) {
+		$location .= $swarm_data->venue->location->state . ', ';
+	}
+	$location .= $swarm_data->venue->location->country;
+	return $location;
 }
+
+

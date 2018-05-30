@@ -2,7 +2,8 @@
 	const colors = {
 			twitter: [ 29, 202, 255 ],
 			spotify: [ 0, 0, 0 ],
-			rocco: [ 144, 144, 144 ]
+			rocco: [ 144, 144, 144 ],
+			swarm: [ 243,169,77 ]
 		},
 		scrollDuration = 1000,
 		scrollAnimationType = 'swing';
