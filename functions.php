@@ -18,6 +18,7 @@
 
 require_once ( get_template_directory() . '/config.php' );
 register_meta( 'post', 'album_info', array() );
+register_meta( 'post', 'late_foursquare_shout', array() );
 
 function the_dammed_set_spotify_access_token() {
 	$args = array(
