@@ -429,6 +429,7 @@ a.page-numbers:hover {
     width: 100%;
     max-width: 640px;
     border: 1px solid #FFF;
+    margin: 0 auto;
 }
 
 .type-swarm a, .type-swarm a:visited {
@@ -502,5 +503,6 @@ iframe, .EmbeddedTweet, twitterwidget {
 
     .type-swarm img {
         width: 50%;
+        margin: unset;
     }
 }
