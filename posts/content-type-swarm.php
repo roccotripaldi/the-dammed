@@ -8,10 +8,16 @@ $img_src = 'https://maps.googleapis.com/maps/api/staticmap?size=640x320&' .
 $foursquare_link = 'https://www.swarmapp.com/roccotripaldi/checkin/' . $foursquare_id;
 $raw_import_data = get_post_meta( $post_id, 'raw_import_data', true );
 $import_object = json_decode( $raw_import_data );
+$shout = the_dammed_get_foursquare_shout( $post_id, $import_object );
 ?>
 <div class="dammed-card type-swarm" data-type="swarm">
 	<div class="dammed-content">
-        <img src="<?php echo $img_src; ?>" />
+        <div class="media-box">
+            <img class="media-main" src="<?php echo $img_src; ?>" />
+            <?php if( $shout ): ?>
+                <p class="media-caption"><?php echo $shout ?></p>
+            <?php endif; ?>
+        </div>
         <p>On <?php the_time( 'M j, Y' ); ?> Rocco<br /><?php the_title(); ?><br />
             <?php echo the_dammed_swarm_location( $import_object ); ?>:
             <a href="<?php echo $foursquare_link; ?>">View on Swarm</a>

@@ -154,4 +154,13 @@ function the_dammed_swarm_location( $swarm_data ) {
 	return $location;
 }
 
-
+function the_dammed_get_foursquare_shout( $post_id, $swarm_data ) {
+	$late_shout = get_post_meta( $post_id, 'late_foursquare_shout', true );
+	if ( ! empty( $late_shout ) ) {
+		return $late_shout;
+	}
+	if ( ! empty( $swarm_data->shout ) ) {
+		return  $swarm_data->shout;
+	}
+	return null;
+}

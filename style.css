@@ -312,6 +312,13 @@ body {
     display: block;
 }
 
+@media screen and (max-width: 480px) {
+    #dammed-loader p {
+        font-size: small;
+        width: 95%;
+    }
+}
+
 
 /*--------------------------------------------------------------
 3.0 Header & Footer
@@ -424,12 +431,35 @@ a.page-numbers:hover {
     text-align: center;
 }
 
-.type-swarm img {
-    display: block;
+.type-swarm .media-box {
     width: 100%;
     max-width: 640px;
+    height: 320px;
     border: 1px solid #FFF;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: rgba( 0, 0, 0, 0.4 );
+}
+
+.type-swarm .media-box .media-main {
+    width: 100%;
+    z-index: 2;
+}
+
+.type-swarm .media-box .media-caption {
+    position: absolute;
+    z-index: 3;
+    width: 90%;
+    padding: 10px 10%;
+    text-align: center;
+    background-color: rgba( 0, 0, 0, 0.6 );
+    bottom: 0px;
+    left: 0px;
+    margin: 0;
 }
 
 .type-swarm a, .type-swarm a:visited {
@@ -438,7 +468,7 @@ a.page-numbers:hover {
 }
 
 .type-swarm a:hover {
-    color: white;
+    text-decoration: underline;
 }
 
 iframe, .EmbeddedTweet, twitterwidget {
@@ -501,8 +531,21 @@ iframe, .EmbeddedTweet, twitterwidget {
         align-items: center;
     }
 
-    .type-swarm img {
+    .type-swarm .media-box {
         width: 50%;
         margin: unset;
+        height: auto;
+    }
+    .type-swarm .media-box {
+        height: 180px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .type-swarm .media-box .media-caption {
+        font-size: x-small;
+    }
+    .type-swarm .media-box {
+        height: 180px;
     }
 }
