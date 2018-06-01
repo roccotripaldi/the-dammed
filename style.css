@@ -454,7 +454,7 @@ a.page-numbers:hover {
     position: absolute;
     z-index: 3;
     width: 90%;
-    padding: 10px 10%;
+    padding: 10px 5%;
     text-align: center;
     background-color: rgba( 0, 0, 0, 0.6 );
     bottom: 0px;
@@ -536,8 +536,8 @@ iframe, .EmbeddedTweet, twitterwidget {
         margin: unset;
         height: auto;
     }
-    .type-swarm .media-box {
-        height: 180px;
+    .type-swarm .media-box .media-caption {
+        font-size: x-small;
     }
 }
 
