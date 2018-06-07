@@ -139,7 +139,10 @@ function the_dammed_get_gorgeous_thing() {
 		'a riverside picnic in Paris',
 		'a warm bag of chestnuts in Lisbon',
 		'a plate of patatas bravas in Madrid',
-		'a ferry ride to Bowen Island'
+		'a ferry ride to Bowen Island',
+		'a Peaks Island pub crawl',
+		'a scooter ride with a friend',
+		'a motorcycle\'s friction zone'
 	);
 	$gorgeous_things = apply_filters( 'dammed_gorgeous_things', $gorgeous_things );
 	return $gorgeous_things[ mt_rand( 0, count( $gorgeous_things ) - 1 ) ];
