@@ -88,7 +88,7 @@ function the_dammed_update_album_info( $post_id ) {
 	$content = trim( strip_tags( get_the_content() ) );
 	$album_info_array = explode( ':', $content );
 	$artist = trim( $album_info_array[0] );
-	$album_array = explode( '"', html_entity_decode( $album_info_array[1] ) );
+	$album_array = explode( '"', html_entity_decode( $album_info_array[1], ENT_QUOTES ) );
 	$album = trim( $album_array[1] );
 	$album_info = array( 'album' => $album, 'artist' => $artist );
 	update_post_meta( $post_id, 'album_info', $album_info );
@@ -102,7 +102,11 @@ function the_dammed_update_spotify_info( $post_id, $artist, $album ) {
 		)
 	);
 
-	$response = wp_remote_get( 'https://api.spotify.com/v1/search?query=' . $album . ' ' . $artist . '&type=album&limit=1', $args );
+	$query = $album . ' ' . $artist;
+	$query = htmlspecialchars_decode( $query, ENT_QUOTES );
+	$query = urlencode( $query );
+
+	$response = wp_remote_get( 'https://api.spotify.com/v1/search?query=' . $query . '&type=album&limit=1', $args );
 
 	if ( is_wp_error( $response ) || 200 != wp_remote_retrieve_response_code( $response ) ) {
 		return;
