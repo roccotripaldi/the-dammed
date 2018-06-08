@@ -102,7 +102,7 @@ function the_dammed_update_spotify_info( $post_id, $artist, $album ) {
 		)
 	);
 
-	$response = wp_remote_get( 'https://api.spotify.com/v1/search?query=' . urlencode( $album . ' ' . $artist ) . '&type=album&limit=1', $args );
+	$response = wp_remote_get( 'https://api.spotify.com/v1/search?query=' . $album . ' ' . $artist . '&type=album&limit=1', $args );
 
 	if ( is_wp_error( $response ) || 200 != wp_remote_retrieve_response_code( $response ) ) {
 		return;
