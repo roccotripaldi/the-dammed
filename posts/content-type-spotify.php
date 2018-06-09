@@ -11,11 +11,12 @@
     if ( ! $spotify_info ) {
 	    $spotify_info = the_dammed_update_spotify_info( $post_id, $album_info['artist'], $album_info['album'] );
     }
+    $cover_alt_text = esc_attr( $album_info['album'] ) . ' by ' . esc_attr( $album_info['artist'] );
 ?>
 <?php if ( empty( $spotify_info ) ) : ?>
     <div class="dammed-card type-spotify" data-type="spotify">
         <div class="dammed-content">
-            <img src="<?php echo $cover_art; ?>" alt="Album Title by Album Artist" />
+            <img src="<?php echo $cover_art; ?>" alt="<?php echo $cover_alt_text; ?>" />
             <p>
                 On <?php the_date( 'M j, Y' ); ?>,<br />
                 <a href="<?php echo $roccos_spotify_profile_link; ?>">Rocco</a> listened to:<br />
@@ -27,7 +28,7 @@
     <div class="dammed-card type-spotify" data-type="spotify">
         <div class="dammed-content">
             <a href="spotify:album:<?php echo $spotify_info['album_id']; ?>" class="img-link">
-                <img src="<?php echo $cover_art; ?>" alt="Album Title by Album Artist" />
+                <img src="<?php echo $cover_art; ?>" alt="<?php echo $cover_alt_text; ?>" />
             </a>
             <p>
                 On <?php the_date( 'M j, Y' ); ?>,<br />
