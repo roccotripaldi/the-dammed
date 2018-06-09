@@ -1,6 +1,6 @@
 <?php
     $post_id = get_the_ID();
-    $cover_art = the_dammed_get_cover_art();
+    $cover_art = the_dammed_get_attachment_url();
     $roccos_spotify_profile_link = 'spotify:user:121311302';
     $album_info = get_post_meta( $post_id, 'album_info', true );
     if ( ! $album_info || empty( $album_info['artist'] ) || empty( $album_info['artist'] ) ) {
