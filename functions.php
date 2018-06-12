@@ -146,15 +146,23 @@ function the_dammed_get_gorgeous_thing() {
 		'a ferry ride to Bowen Island',
 		'a Peaks Island pub crawl',
 		'a scooter ride with a friend',
-		'a motorcycle\'s friction zone'
+		'a motorcycle\'s friction zone',
+		'birthday beers with family at the Old Port Festival',
+		'freshly grown basil on a microwave dinner',
 	);
 	$gorgeous_things = apply_filters( 'dammed_gorgeous_things', $gorgeous_things );
 	return $gorgeous_things[ mt_rand( 0, count( $gorgeous_things ) - 1 ) ];
 }
 
 function the_dammed_swarm_location( $swarm_data ) {
-	$location = $swarm_data->venue->location->city . ', ';
-	if( $swarm_data->venue->location->city !== $swarm_data->venue->location->state ) {
+	$location = '';
+	if ( ! empty( $swarm_data->venue->location->city ) ) {
+		$location = $swarm_data->venue->location->city . ', ';
+	}
+	if(
+		$swarm_data->venue->location->city !== $swarm_data->venue->location->state &&
+		! empty( $swarm_data->venue->location->state )
+	) {
 		$location .= $swarm_data->venue->location->state . ', ';
 	}
 	$location .= $swarm_data->venue->location->country;
