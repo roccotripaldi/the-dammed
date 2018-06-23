@@ -179,3 +179,47 @@ function the_dammed_get_foursquare_shout( $post_id, $swarm_data ) {
 	}
 	return null;
 }
+
+function the_dammed_format_tweet( $raw_tweet ) {
+	$entities = array();
+	$content = $raw_tweet['text'];
+	foreach( $raw_tweet['entities']['user_mentions'] as $mention ) {
+		$entities[] = array(
+			'starts' => $mention['indices'][0],
+			'ends' => $mention['indices'][1],
+			'type' => 'mention',
+			'screen_name' => $mention['screen_name'],
+			'id' => $mention['id'],
+		);
+	}
+	foreach( $raw_tweet['entities']['hashtags'] as $hashtag ) {
+		$entities[] = array(
+			'starts' => $hashtag['indices'][0],
+			'ends' => $hashtag['indices'][1],
+			'type' => 'hashtag',
+			'text' => $hashtag['text'],
+		);
+	}
+
+	usort( $entities, function( $a, $b ) {
+		if ( $a['starts'] > $b['starts'] ) {
+			return -1;
+		}
+		return 1;
+	} );
+
+	foreach( $entities as $entity ) {
+		switch ( $entity['type'] ) {
+			case 'mention':
+				$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
+				$content = substr_replace( $content, '<a href="https://twitter.com/' . $entity['screen_name'] .'">', $entity['starts'], 0 );
+				break;
+			case 'hashtag':
+				$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
+				$content = substr_replace( $content, '<a href="https://twitter.com/hashtag/' . $entity['text'] .'">', $entity['starts'], 0 );
+				break;
+		}
+	}
+
+	return $content;
+}
