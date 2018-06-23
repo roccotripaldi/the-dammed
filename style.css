@@ -407,6 +407,27 @@ a.page-numbers:hover {
     text-align: center;
 }
 
+.tweet {
+    padding: 2%;
+    width: 86%;
+    margin: 0 auto;
+    max-width: 440px;
+    background-color: white;
+    border-radius: 5px;
+    color:black;
+    font-size: 14px;
+    line-height: normal;
+    text-align: left;
+}
+
+.tweet a, .tweet a:visited {
+    color: rgba(43, 123, 185, 1);
+}
+
+.tweet a:hover {
+    color: rgba(43, 123, 185, 0.8);
+}
+
 .type-swarm .media-box {
     width: 100%;
     max-width: 640px;
@@ -445,10 +466,6 @@ a.page-numbers:hover {
 
 .type-swarm a:hover {
     text-decoration: underline;
-}
-
-iframe, .EmbeddedTweet, twitterwidget {
-    margin: 0 auto !important;
 }
 
 .type-spotify a, .type-spotify a:visited {
