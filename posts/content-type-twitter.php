@@ -9,7 +9,15 @@ $content = the_dammed_format_tweet( $raw_tweet );
 <div class="dammed-card type-twitter" data-type="twitter">
 	<div class="dammed-content">
        <article class="tweet">
-           <?php echo $content; ?>
+           <header>
+               <?php echo the_dammed_tweet_header( $raw_tweet ); ?>
+           </header>
+           <p>
+	           <?php echo $content; ?>
+           </p>
+           <footer>
+               <?php echo the_dammed_tweet_footer( $raw_tweet ); ?>
+           </footer>
        </article>
 	</div>
 </div>

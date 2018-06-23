@@ -414,18 +414,37 @@ a.page-numbers:hover {
     max-width: 440px;
     background-color: white;
     border-radius: 5px;
-    color:black;
-    font-size: 14px;
-    line-height: normal;
     text-align: left;
+    line-height: normal;
+    color:black;
+}
+
+.tweet p {
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .tweet a, .tweet a:visited {
     color: rgba(43, 123, 185, 1);
+    text-decoration: none;
 }
 
 .tweet a:hover {
     color: rgba(43, 123, 185, 0.8);
+}
+
+.tweet header {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.tweet footer {
+    font-size: 12px;
+}
+
+.tweet footer a, .tweet footer a:visited {
+    color: rgba( 120, 120, 120, 1);
 }
 
 .type-swarm .media-box {

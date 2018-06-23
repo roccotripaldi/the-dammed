@@ -223,3 +223,15 @@ function the_dammed_format_tweet( $raw_tweet ) {
 
 	return $content;
 }
+
+function the_dammed_tweet_header( $raw_tweet ) {
+	$action = 'tweeted';
+	$user = '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '">@' . $raw_tweet['user']['screen_name'] . '</a>';
+	return $user . ' ' . $action . ':';
+}
+
+function the_dammed_tweet_footer( $raw_tweet ) {
+	$time = strtotime( $raw_tweet['created_at'] );
+	$date = date( 'g:i A - M n, Y', $time );
+	return '<a href="https://twitter.com/status/' . $raw_tweet['id'] . '">' . $date . '</a>';
+}
