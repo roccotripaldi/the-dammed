@@ -212,11 +212,11 @@ function the_dammed_format_tweet( $raw_tweet ) {
 		switch ( $entity['type'] ) {
 			case 'mention':
 				$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
-				$content = substr_replace( $content, '<a href="https://twitter.com/' . $entity['screen_name'] .'">', $entity['starts'], 0 );
+				$content = substr_replace( $content, '<a href="https://twitter.com/' . $entity['screen_name'] .'" target="_blank">', $entity['starts'], 0 );
 				break;
 			case 'hashtag':
 				$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
-				$content = substr_replace( $content, '<a href="https://twitter.com/hashtag/' . $entity['text'] .'">', $entity['starts'], 0 );
+				$content = substr_replace( $content, '<a href="https://twitter.com/hashtag/' . $entity['text'] .'" target="_blank">', $entity['starts'], 0 );
 				break;
 		}
 	}
@@ -226,12 +226,12 @@ function the_dammed_format_tweet( $raw_tweet ) {
 
 function the_dammed_tweet_header( $raw_tweet ) {
 	$action = 'tweeted';
-	$user = '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '">@' . $raw_tweet['user']['screen_name'] . '</a>';
+	$user = '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '" target="_blank">@' . $raw_tweet['user']['screen_name'] . '</a>';
 	return $user . ' ' . $action . ':';
 }
 
 function the_dammed_tweet_footer( $raw_tweet ) {
 	$time = strtotime( $raw_tweet['created_at'] );
 	$date = date( 'g:i A - M n, Y', $time );
-	return '<a href="https://twitter.com/status/' . $raw_tweet['id'] . '">' . $date . '</a>';
+	return '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '/status/' . $raw_tweet['id'] . '" target="_blank">' . $date . '</a>';
 }
