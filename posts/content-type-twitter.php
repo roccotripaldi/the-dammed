@@ -8,9 +8,6 @@ $content = "[tweet $twitter_id hide_media='true']";
 ?>
 <div class="dammed-card type-twitter" data-type="twitter">
 	<div class="dammed-content">
-        <?php if( $tweet['retweeted'] ) : ?>
-            <p>Rocco retweeted:</p>
-        <?php endif; ?>
-		<?php echo apply_filters( 'the_content', $content ); ?>
+       <p>It's a tweet</p>
 	</div>
 </div>
