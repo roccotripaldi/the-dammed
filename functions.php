@@ -182,8 +182,14 @@ function the_dammed_get_foursquare_shout( $post_id, $swarm_data ) {
 
 function the_dammed_format_tweet( $raw_tweet ) {
 	$entities = array();
-	$content = $raw_tweet['text'];
-	foreach( $raw_tweet['entities']['user_mentions'] as $mention ) {
+
+	$tweet = $raw_tweet['retweeted'] ?
+		$raw_tweet['retweeted_status'] :
+		$raw_tweet;
+
+	$content = $tweet['text'];
+
+	foreach( $tweet['entities']['user_mentions'] as $mention ) {
 		$entities[] = array(
 			'starts' => $mention['indices'][0],
 			'ends' => $mention['indices'][1],
@@ -192,7 +198,8 @@ function the_dammed_format_tweet( $raw_tweet ) {
 			'id' => $mention['id'],
 		);
 	}
-	foreach( $raw_tweet['entities']['hashtags'] as $hashtag ) {
+
+	foreach( $tweet['entities']['hashtags'] as $hashtag ) {
 		$entities[] = array(
 			'starts' => $hashtag['indices'][0],
 			'ends' => $hashtag['indices'][1],
@@ -227,7 +234,9 @@ function the_dammed_format_tweet( $raw_tweet ) {
 }
 
 function the_dammed_tweet_header( $raw_tweet ) {
-	$action = 'tweeted';
+	$action = $raw_tweet['retweeted'] ?
+		'retweetd <a href="https://twitter.com/' . $raw_tweet['retweeted_status']['user']['screen_name']  . '" target="_blank">' . $raw_tweet['retweeted_status']['user']['screen_name'] . '</a>' :
+		'tweeted';
 	$user = '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '" target="_blank">@' . $raw_tweet['user']['screen_name'] . '</a>';
 	return $user . ' ' . $action . ':';
 }
