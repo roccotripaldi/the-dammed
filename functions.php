@@ -221,6 +221,8 @@ function the_dammed_format_tweet( $raw_tweet ) {
 		}
 	}
 
+	$content = str_replace( "\n", "<br />", $content );
+
 	return $content;
 }
 
