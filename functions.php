@@ -189,6 +189,7 @@ function the_dammed_format_tweet( $raw_tweet ) {
 
 	$content = $tweet['text'];
 
+
 	foreach( $tweet['entities']['user_mentions'] as $mention ) {
 		$entities[] = array(
 			'starts' => $mention['indices'][0],
@@ -208,6 +209,25 @@ function the_dammed_format_tweet( $raw_tweet ) {
 		);
 	}
 
+	foreach ( $tweet['entities']['urls'] as $url ) {
+		$entities[] = array(
+			'starts' => $url['indices'][0],
+			'ends' => $url['indices'][1],
+			'expanded' => $url['expanded_url'],
+			'type' => 'url'
+		);
+	}
+
+	if ( isset( $tweet['entities']['media'] ) ) {
+		foreach ( $tweet['entities']['media'] as $media ) {
+			$entities[] = array(
+				'starts' => $media['indices'][0],
+				'ends' => $media['indices'][1],
+				'type' => 'media'
+			);
+		}
+	}
+
 	usort( $entities, function( $a, $b ) {
 		if ( $a['starts'] > $b['starts'] ) {
 			return -1;
@@ -225,10 +245,27 @@ function the_dammed_format_tweet( $raw_tweet ) {
 				$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
 				$content = substr_replace( $content, '<a href="https://twitter.com/hashtag/' . $entity['text'] .'" target="_blank">', $entity['starts'], 0 );
 				break;
+			case 'url':
+				if ( $tweet['truncated'] ||  false != strpos( $entity['expanded'], 'twitter.com' ) ) {
+					$content = substr_replace( $content, '', $entity['starts'], $entity['ends'] - $entity['starts'] );
+				} else {
+					$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
+					$content = substr_replace( $content, '<a href="' . $entity['expanded'] . '" target="_blank">', $entity['starts'], 0 );
+				}
+				break;
+			case 'media':
+				$content = substr_replace( $content, '', $entity['starts'], $entity['ends'] - $entity['starts'] );
+				break;
 		}
 	}
 
 	$content = str_replace( "\n", "<br />", $content );
+
+	if ( isset( $raw_tweet['quoted_status'] ) ) {
+		$quoted = the_dammed_format_tweet( $raw_tweet['quoted_status'] );
+		$header = the_dammed_tweet_header( $raw_tweet['quoted_status'] );
+		$content .= "<article class='retweeted-status'><header>$header</header><div class='tweeted-status'>$quoted</div></article>";
+	}
 
 	return $content;
 }
@@ -244,5 +281,7 @@ function the_dammed_tweet_header( $raw_tweet ) {
 function the_dammed_tweet_footer( $raw_tweet ) {
 	$time = strtotime( $raw_tweet['created_at'] );
 	$date = date( 'g:i A - M n, Y', $time );
-	return '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '/status/' . $raw_tweet['id'] . '" target="_blank">' . $date . '</a>';
+	$tweet_date = '<a class="tweet-date" href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '/status/' . $raw_tweet['id'] . '" target="_blank">' . $date . '</a>';
+	$tweet_link = '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '/status/' . $raw_tweet['id'] . '" target="_blank">View on Twitter</a>';
+	return $tweet_date . ' - ' . $tweet_link;
 }

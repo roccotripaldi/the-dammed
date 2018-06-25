@@ -419,7 +419,18 @@ a.page-numbers:hover {
     color:black;
 }
 
-.tweet p {
+.retweeted-status {
+    padding: 4%;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.tweeted-status .retweeted-status {
+    margin: 10px 0 0 20px;
+}
+
+.tweet div {
     font-size: 14px;
     margin-bottom: 10px;
 }
@@ -443,7 +454,7 @@ a.page-numbers:hover {
     font-size: 12px;
 }
 
-.tweet footer a, .tweet footer a:visited {
+.tweet footer a.tweet-date, .tweet footer a.tweet-date:visited {
     color: rgba( 120, 120, 120, 1);
 }
 
