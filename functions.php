@@ -180,6 +180,12 @@ function the_dammed_get_foursquare_shout( $post_id, $swarm_data ) {
 	return null;
 }
 
+function the_dammed_unicode_mappings( $content ) {
+	$search  = array( '’',  '‘',  '“', '”', '—' );
+	$replace = array( '\'', '\'', '"', '"', '-' );
+	return str_replace( $search, $replace, $content );
+}
+
 function the_dammed_format_tweet( $raw_tweet ) {
 	$entities = array();
 
@@ -187,8 +193,7 @@ function the_dammed_format_tweet( $raw_tweet ) {
 		$raw_tweet['retweeted_status'] :
 		$raw_tweet;
 
-	$content = $tweet['text'];
-
+	$content = the_dammed_unicode_mappings( $tweet['text'] );
 
 	foreach( $tweet['entities']['user_mentions'] as $mention ) {
 		$entities[] = array(
@@ -246,7 +251,9 @@ function the_dammed_format_tweet( $raw_tweet ) {
 				$content = substr_replace( $content, '<a href="https://twitter.com/hashtag/' . $entity['text'] .'" target="_blank">', $entity['starts'], 0 );
 				break;
 			case 'url':
-				if ( $tweet['truncated'] ||  false != strpos( $entity['expanded'], 'twitter.com' ) ) {
+				if ( $tweet['truncated'] ) {
+					$content = substr_replace( $content, '', $entity['starts'] + 1, $entity['ends'] - $entity['starts'] + 1 );
+				} else if ( false != strpos( $entity['expanded'], 'twitter.com' ) ) {
 					$content = substr_replace( $content, '', $entity['starts'], $entity['ends'] - $entity['starts'] );
 				} else {
 					$content = substr_replace( $content, '</a>', $entity['ends'], 0 );
