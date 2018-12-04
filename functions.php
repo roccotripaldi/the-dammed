@@ -83,6 +83,14 @@ function the_dammed_get_attachment_url() {
 	return array_values( $cover_art )[0]->guid;
 }
 
+function the_dammed_foursquare_photo() {
+	$photo = the_dammed_get_attachment_url();
+	if ( ! $photo ) {
+		return;
+	}
+	echo "<img class='media-secondary' src='$photo' />";
+}
+
 
 /*--------------------------------------------------------------
 4.0 Misc
@@ -295,4 +303,14 @@ function the_dammed_tweet_footer( $raw_tweet ) {
 	$tweet_date = '<a class="tweet-date" href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '/status/' . $raw_tweet['id'] . '" target="_blank">' . $date . '</a>';
 	$tweet_link = '<a href="https://twitter.com/' . $raw_tweet['user']['screen_name'] . '/status/' . $raw_tweet['id'] . '" target="_blank">View on Twitter</a>';
 	return $tweet_date . ' - ' . $tweet_link;
+}
+
+function the_dammed_instagram_map( $import_object ) {
+	if ( ! $import_object->location ) {
+		return;
+	}
+	$map_src = 'https://maps.googleapis.com/maps/api/staticmap?size=640x320&' .
+	           'markers=' . $import_object->location->latitude . ',' .
+	           $import_object->location->longitude .'&key=' . GOOGLE_MAPS_API_KEY;
+	echo "<img class='media-secondary' src='$map_src' />";
 }
