@@ -458,7 +458,7 @@ a.page-numbers:hover {
     color: rgba( 120, 120, 120, 1);
 }
 
-.type-swarm .media-box {
+.dammed-card .media-box {
     width: 100%;
     max-width: 640px;
     height: 320px;
@@ -472,12 +472,12 @@ a.page-numbers:hover {
     background-color: rgba( 0, 0, 0, 0.4 );
 }
 
-.type-swarm .media-box .media-main {
+.dammed-card .media-box .media-main {
     width: 100%;
     z-index: 2;
 }
 
-.type-swarm .media-box .media-caption {
+.dammed-card .media-box .media-caption {
     position: absolute;
     z-index: 3;
     width: 90%;
@@ -518,7 +518,7 @@ a.page-numbers:hover {
     box-shadow: 0px 0px 20px #FFF;
 }
 
-.type-spotify .img-link {
+.type-spotify .img-link{
     width: 300px;
     margin: 0 auto;
 }
@@ -554,21 +554,21 @@ a.page-numbers:hover {
         align-items: center;
     }
 
-    .type-swarm .media-box {
+    .dammed-card .media-box {
         width: 50%;
         margin: unset;
         height: auto;
     }
-    .type-swarm .media-box .media-caption {
+    .dammed-card .media-box .media-caption {
         font-size: x-small;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .type-swarm .media-box .media-caption {
+    .dammed-card .media-box .media-caption {
         font-size: x-small;
     }
-    .type-swarm .media-box {
+    .dammed-card .media-box {
         height: 180px;
     }
 }

@@ -71,6 +71,10 @@ function the_dammed_is_post_swarm_type() {
 	return has_term( 'check-ins', 'category' );
 }
 
+function the_dammed_is_post_instagram_type() {
+	return has_term( 'instagram', 'category' );
+}
+
 function the_dammed_get_attachment_url() {
 	$cover_art = get_attached_media( 'image' );
 	if ( empty( $cover_art ) ) {
