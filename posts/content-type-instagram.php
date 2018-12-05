@@ -18,12 +18,12 @@ $media = the_dammed_get_first_attachment_url();
         <div class="media-box">
             <?php the_dammed_instagram_media(); ?>
             <?php the_dammed_instagram_map( $import_object ); ?>
-		    <?php if( $import_object->caption ): ?>
-                <p class="media-caption"><?php echo $import_object->caption->text ?></p>
-		    <?php endif; ?>
         </div>
         <div class="instagram-footer">
-            <p>Posted <?php the_time( 'M j, Y' ); ?>
+	        <?php if( $import_object->caption ): ?>
+                <p class="instagram-caption"><?php echo $import_object->caption->text ?></p>
+	        <?php endif; ?>
+            <p class="instagram-date">Posted <?php the_time( 'M j, Y' ); ?>
                 on <a href="<?php echo $import_object->link; ?>" target="_blank">Instagram</a></p>
         </div>
     </div>

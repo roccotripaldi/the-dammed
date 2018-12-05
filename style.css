@@ -557,6 +557,15 @@ a.page-numbers:hover {
     margin: 10px;
 }
 
+.instagram-info {
+    text-align: left;
+}
+
+.instagram-info a {
+    font-size: x-small;
+    cursor: pointer;
+}
+
 .instagram-footer {
     color: #666;
     background-color: #FFF;
@@ -568,19 +577,17 @@ a.page-numbers:hover {
 }
 
 .instagram-footer p {
-    margin: 0;
-    padding: 10px;
-    font-size: x-small;
+    margin: 10px;
+    padding: 0;
     text-align: left;
 }
 
-.instagram-info {
-    text-align: left;
+.instagram-footer .instagram-caption {
+    margin-bottom: 0;
 }
 
-.instagram-info a {
+.instagram-footer .instagram-date {
     font-size: x-small;
-    cursor: pointer;
 }
 
 @media screen and (min-width: 480px) and (max-width: 840px) {
@@ -627,7 +634,7 @@ a.page-numbers:hover {
     .dammed-card .media-box {
         height: 180px;
     }
-    .instagram-footer p {
+    .instagram-footer .instagram-date {
         font-size: xx-small;
     }
 }
