@@ -75,20 +75,32 @@ function the_dammed_is_post_instagram_type() {
 	return has_term( 'instagram', 'category' );
 }
 
-function the_dammed_get_attachment_url() {
-	$cover_art = get_attached_media( 'image' );
-	if ( empty( $cover_art ) ) {
+function the_dammed_get_first_attachment_url( $type = 'image' ) {
+	$media = get_attached_media( $type );
+	if ( empty( $media ) ) {
 		return false;
 	}
-	return array_values( $cover_art )[0]->guid;
+	return array_values( $media )[0]->guid;
 }
 
 function the_dammed_foursquare_photo() {
-	$photo = the_dammed_get_attachment_url();
+	$photo = the_dammed_get_first_attachment_url();
 	if ( ! $photo ) {
 		return;
 	}
 	echo "<img class='media-secondary' src='$photo' />";
+}
+
+function the_dammed_instagram_media() {
+	$video = the_dammed_get_first_attachment_url( 'video' );
+	$image = the_dammed_get_first_attachment_url();
+	if ( $video ) {
+		echo apply_filters( 'the_content', "[video src='$video' height='320']" );
+		return;
+	} else if ( $image ) {
+		echo  "<img class='media-main' src='$image' />";
+		return;
+	}
 }
 
 
