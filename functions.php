@@ -54,6 +54,7 @@ function the_dammed_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'the_dammed_scripts' );
 
+
 /*--------------------------------------------------------------
 3.0 Loop Functions
 --------------------------------------------------------------*/
@@ -83,6 +84,14 @@ function the_dammed_get_first_attachment_url( $type = 'image' ) {
 	return array_values( $media )[0]->guid;
 }
 
+function the_dammed_get_first_attachment_id( $type = 'image' ) {
+	$media = get_attached_media( $type );
+	if ( empty( $media ) ) {
+		return false;
+	}
+	return array_values( $media )[0]->ID;
+}
+
 function the_dammed_foursquare_photo() {
 	$photo = the_dammed_get_first_attachment_url();
 	if ( ! $photo ) {
@@ -98,7 +107,9 @@ function the_dammed_instagram_media() {
 		echo apply_filters( 'the_content', "[video src='$video' height='320']" );
 		return;
 	} else if ( $image ) {
-		echo  "<img class='media-main' src='$image' />";
+		$id = the_dammed_get_first_attachment_id();
+		echo  apply_filters( 'the_content', "<img class='media-main' src='$image' /><div style='display: none'>[gallery include='$id']</div> " );
+		echo "<a class='dashicons dashicons-search dammed-image-zoom' href='#jp-carousel-$id'></a>";
 		return;
 	}
 }
