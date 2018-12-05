@@ -314,3 +314,10 @@ function the_dammed_instagram_map( $import_object ) {
 	           $import_object->location->longitude .'&key=' . GOOGLE_MAPS_API_KEY;
 	echo "<img class='media-secondary' src='$map_src' />";
 }
+
+function the_dammed_instagram_location( $import_object ) {
+	if ( ! $import_object->location ) {
+		return;
+	}
+	echo "<a class='instagram-map-toggle'>{$import_object->location->name}</a>";
+}

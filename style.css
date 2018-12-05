@@ -472,6 +472,10 @@ a.page-numbers:hover {
     background-color: rgba( 0, 0, 0, 0.4 );
 }
 
+.dammed-card.type-instagram .media-box {
+    border-radius: 0;
+}
+
 .dammed-card .media-box .media-main {
     width: 100%;
     z-index: 2;
@@ -483,7 +487,7 @@ a.page-numbers:hover {
     width: 90%;
     padding: 10px 5%;
     text-align: center;
-    background-color: rgba( 0, 0, 0, 0.6 );
+    background-color: rgba( 0, 0, 0, 0.4 );
     bottom: 0px;
     left: 0px;
     margin: 0;
@@ -527,6 +531,57 @@ a.page-numbers:hover {
     width: 100%;
 }
 
+.type-instagram a, a:visited {
+    color: #BC00B2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.instagram-header {
+    color: #666;
+    background-color: #FFF;
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    border: 1px solid #FFF;
+    display: flex;
+    align-items: center;
+}
+
+.instagram-avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.instagram-footer {
+    color: #666;
+    background-color: #FFF;
+    border-radius: 0 0 8px 8px;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    border: 1px solid #FFF;
+}
+
+.instagram-footer p {
+    margin: 0;
+    padding: 10px;
+    font-size: x-small;
+    text-align: left;
+}
+
+.instagram-info {
+    text-align: left;
+}
+
+.instagram-info a {
+    font-size: x-small;
+    cursor: pointer;
+}
 
 @media screen and (min-width: 480px) and (max-width: 840px) {
     .type-spotify .dammed-content {
@@ -554,11 +609,12 @@ a.page-numbers:hover {
         align-items: center;
     }
 
-    .dammed-card .media-box {
+    .dammed-card.type-swarm .media-box {
         width: 50%;
         margin: unset;
         height: auto;
     }
+
     .dammed-card .media-box .media-caption {
         font-size: x-small;
     }
@@ -570,5 +626,8 @@ a.page-numbers:hover {
     }
     .dammed-card .media-box {
         height: 180px;
+    }
+    .instagram-footer p {
+        font-size: xx-small;
     }
 }
