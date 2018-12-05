@@ -17,7 +17,6 @@ $media = the_dammed_get_first_attachment_url();
         </div>
         <div class="media-box">
             <?php the_dammed_instagram_media(); ?>
-            <?php the_dammed_instagram_map( $import_object ); ?>
         </div>
         <div class="instagram-footer">
 	        <?php if( $import_object->caption ): ?>

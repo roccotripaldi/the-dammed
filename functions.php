@@ -317,19 +317,12 @@ function the_dammed_tweet_footer( $raw_tweet ) {
 	return $tweet_date . ' - ' . $tweet_link;
 }
 
-function the_dammed_instagram_map( $import_object ) {
-	if ( ! $import_object->location ) {
-		return;
-	}
-	$map_src = 'https://maps.googleapis.com/maps/api/staticmap?size=640x320&' .
-	           'markers=' . $import_object->location->latitude . ',' .
-	           $import_object->location->longitude .'&key=' . GOOGLE_MAPS_API_KEY;
-	echo "<img class='media-secondary' src='$map_src' />";
-}
-
 function the_dammed_instagram_location( $import_object ) {
 	if ( ! $import_object->location ) {
 		return;
 	}
-	echo "<a class='instagram-map-toggle'>{$import_object->location->name}</a>";
+	$id = $import_object->location->id;
+	$name = $import_object->location->name;
+	$url_name = sanitize_title( $name );
+	echo "<a href='https://www.instagram.com/explore/locations/$id/$url_name' target='_blank'>$name</a>";
 }
