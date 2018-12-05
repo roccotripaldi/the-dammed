@@ -590,7 +590,7 @@ a.page-numbers:hover {
     font-size: x-small;
 }
 
-.dammed-image-zoom, .dammed-image-zoom:visited {
+.dammed-image-zoom {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -598,11 +598,9 @@ a.page-numbers:hover {
     cursor: pointer;
     color: limegreen;
     width: 40px;
-    height: 30px;
+    height: 40px;
     border-radius: 20px;
     box-shadow: 1px 1px 3px #555;
-    padding-top: 10px;
-    background-color: #FFF;
 }
 
 .dammed-image-zoom:focus {

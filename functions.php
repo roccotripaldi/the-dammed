@@ -49,7 +49,7 @@ if ( ! get_transient( 'spotify_access_token' ) ) {
 --------------------------------------------------------------*/
 
 function the_dammed_scripts() {
-	wp_enqueue_style( 'the-dammed-style', get_stylesheet_uri(), array() );
+	wp_enqueue_style( 'the-dammed-style', get_stylesheet_uri(), array( 'dashicons' ) );
 	wp_enqueue_script( 'the-dammed-js', get_template_directory_uri() . '/js/the-dammed.js', array( 'jquery') );
 }
 add_action( 'wp_enqueue_scripts', 'the_dammed_scripts' );
@@ -84,14 +84,6 @@ function the_dammed_get_first_attachment_url( $type = 'image' ) {
 	return array_values( $media )[0]->guid;
 }
 
-function the_dammed_get_first_attachment_id( $type = 'image' ) {
-	$media = get_attached_media( $type );
-	if ( empty( $media ) ) {
-		return false;
-	}
-	return array_values( $media )[0]->ID;
-}
-
 function the_dammed_foursquare_photo() {
 	$photo = the_dammed_get_first_attachment_url();
 	if ( ! $photo ) {
@@ -107,9 +99,8 @@ function the_dammed_instagram_media() {
 		echo apply_filters( 'the_content', "[video src='$video' height='320']" );
 		return;
 	} else if ( $image ) {
-		$id = the_dammed_get_first_attachment_id();
-		echo  apply_filters( 'the_content', "<img class='media-main' src='$image' /><div style='display: none'>[gallery include='$id']</div> " );
-		echo "<a class='dashicons dashicons-search dammed-image-zoom' href='#jp-carousel-$id'></a>";
+		echo  apply_filters( 'the_content', "<img class='media-main' src='$image' />" );
+		echo "<button class='dashicons dashicons-search dammed-image-zoom'></button>";
 		return;
 	}
 }
