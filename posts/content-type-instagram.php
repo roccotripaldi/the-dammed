@@ -9,16 +9,15 @@ $media = the_dammed_get_first_attachment_url();
 <div class="dammed-card type-instagram" data-type="instagram">
     <div class="dammed-content">
         <div class="instagram-header">
-            <img class="instagram-avatar" src="<?php echo $import_object->user->profile_picture; ?>" />
-            <p class="instagram-info">
-                <?php echo $import_object->user->username; ?><br />
-                <?php the_dammed_instagram_location( $import_object ); ?>
-            </p>
+            <?php the_dammed_instagram_header( $import_object ); ?>
         </div>
         <div class="media-box">
             <?php the_dammed_instagram_media(); ?>
         </div>
         <div class="instagram-footer">
+            <div class="instagram-header alternate">
+	            <?php the_dammed_instagram_header( $import_object ); ?>
+            </div>
 	        <?php if( $import_object->caption ): ?>
                 <p class="instagram-caption"><?php echo $import_object->caption->text ?></p>
 	        <?php endif; ?>

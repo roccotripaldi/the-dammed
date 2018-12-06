@@ -104,7 +104,7 @@ function the_dammed_instagram_media() {
 		echo apply_filters( 'the_content', "[video src='$video' height='320']" );
 		return;
 	} else if ( $image ) {
-		echo  apply_filters( 'the_content', "<img class='media-main' src='$image' />" );
+		echo  "<img class='media-main' src='$image' />";
 		echo "<a class='dashicons dashicons-search dammed-image-zoom' data-img='$image'></a>";
 		return;
 	}
@@ -134,6 +134,13 @@ function the_dammed_spotify_album_text( $spotify_info, $album_info ) {
 	$album_id = $spotify_info['album_id'];
 	echo "<em>$album</em> by <a href='spotify:artist:$artist_id'>$artist</a><br />" .
 	     "<a class='spotify-link' href='spotify:album:$album_id'>Listen on Spotify</a>";
+}
+
+function the_dammed_instagram_header( $import_object ) {
+	$pic =  $import_object->user->profile_picture;
+	$name = $import_object->user->username;
+	$location = the_dammed_instagram_location();
+	echo "<img class='instagram-avatar' src='$pic' /><p class='instagram-info'>$name<br />$location</p>";
 }
 
 
@@ -357,5 +364,5 @@ function the_dammed_instagram_location( $import_object ) {
 	$id = $import_object->location->id;
 	$name = $import_object->location->name;
 	$url_name = sanitize_title( $name );
-	echo "<a href='https://www.instagram.com/explore/locations/$id/$url_name' target='_blank'>$name</a>";
+	return "<a href='https://www.instagram.com/explore/locations/$id/$url_name' target='_blank'>$name</a>";
 }

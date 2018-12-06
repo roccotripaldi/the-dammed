@@ -134,5 +134,6 @@
 		$( '#dammed-modal-content, #dammed-modal-close' ).on( 'click', hideModal );
 		setInterval( updateClock, 1000 );
 		$window.resize();
+		$window.scroll();
 	} );
 } )( jQuery );

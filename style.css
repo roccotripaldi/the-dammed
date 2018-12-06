@@ -363,12 +363,14 @@ a.page-numbers:hover {
     background-color: unset;
 }
 
+/* Targets phones */
 @media (max-width: 480px) {
     .dammed-pagination {
         font-size: smaller;
     }
 }
 
+/* Targets tablets */
 @media screen and (min-width: 480px) and (max-width: 840px) {
     header .dammed-content {
         display: flex;
@@ -381,6 +383,7 @@ a.page-numbers:hover {
     }
 }
 
+/* Targets phones and tablets */
 @media screen and (max-width: 840px) {
     #dammed-date {
         font-size: 12px;
@@ -550,6 +553,11 @@ a.page-numbers:hover {
     align-items: center;
 }
 
+.instagram-header.alternate {
+    display: none;
+    border: none;
+}
+
 .instagram-avatar {
     display: block;
     width: 40px;
@@ -611,6 +619,36 @@ a.page-numbers:hover {
     outline: none;
 }
 
+/* Targets phones in landscape mode */
+@media screen and (max-height: 480px) {
+    .type-instagram .dammed-content {
+        display: flex;
+        align-items: center;
+    }
+    .instagram-header {
+        display: none;
+    }
+    .instagram-header.alternate {
+        display: flex;
+    }
+    .type-instagram .media-box {
+        height: auto;
+        width: 30%;
+    }
+
+    #dammed-modal-content img {
+        max-height: 300px;
+        width: auto !important;
+
+    }
+
+    .instagram-footer {
+        width: 65%;
+        border-radius: 4px;
+    }
+}
+
+/* Targets ipads  */
 @media screen and (min-width: 480px) and (max-width: 840px) {
     .type-spotify .dammed-content {
         display: flex;
@@ -648,6 +686,7 @@ a.page-numbers:hover {
     }
 }
 
+/* Targets phones */
 @media screen and (max-width: 480px) {
     .dammed-card .media-box .media-caption {
         font-size: x-small;
@@ -745,6 +784,7 @@ a.page-numbers:hover {
     cursor: pointer;
 }
 
+/* Targets phones and tables */
 @media screen and (max-width: 840px) {
     #dammed-modal-close {
         width: 20px;
