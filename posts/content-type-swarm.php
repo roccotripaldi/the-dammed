@@ -20,8 +20,9 @@ $shout = the_dammed_get_foursquare_shout( $post_id, $import_object );
                 <p class="media-caption"><?php echo $shout ?></p>
 		    <?php endif; ?>
         </div>
-        <p>On <?php the_time( 'M j, Y' ); ?> Rocco<br /><?php the_title(); ?><br />
-		    <?php echo the_dammed_swarm_location( $import_object ); ?>:
+        <p>On <?php the_time( 'Y-m-d' ); ?> Rocco was at<br />
+            <?php the_dammed_swarm_place(); ?><br />
+		    <?php echo the_dammed_swarm_location( $import_object ); ?><br />
             <a href="<?php echo $foursquare_link; ?>">View on Swarm</a>
         </p>
     </div>

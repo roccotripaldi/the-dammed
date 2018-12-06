@@ -92,6 +92,11 @@ function the_dammed_foursquare_photo() {
 	echo "<img class='media-secondary' src='$photo' />";
 }
 
+function the_dammed_swarm_place() {
+	// removes 'Checked in at '
+	echo substr( get_the_title(), 14 );
+}
+
 function the_dammed_instagram_media() {
 	$video = the_dammed_get_first_attachment_url( 'video' );
 	$image = the_dammed_get_first_attachment_url();
