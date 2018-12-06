@@ -89,7 +89,7 @@ function the_dammed_foursquare_photo() {
 	if ( ! $photo ) {
 		return;
 	}
-	echo "<img class='media-secondary' src='$photo' />";
+	echo "<a class='dashicons dashicons-camera dammed-image-zoom' data-img='$photo'></a>";
 }
 
 function the_dammed_swarm_place() {
