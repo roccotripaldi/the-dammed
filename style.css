@@ -536,7 +536,6 @@ a.page-numbers:hover {
 .type-instagram a, a:visited {
     color: #BC00B2;
     text-decoration: none;
-    font-weight: bold;
 }
 
 .instagram-header {
@@ -592,17 +591,20 @@ a.page-numbers:hover {
     font-size: x-small;
 }
 
-.dammed-image-zoom {
+.dammed-image-zoom, .dammed-image-zoom:visited {
     position: absolute;
     top: 10px;
     right: 10px;
     z-index: 2;
     cursor: pointer;
-    color: limegreen;
+    color: limegreen !important;
     width: 40px;
-    height: 40px;
+    height: 30px;
     border-radius: 20px;
     box-shadow: 1px 1px 3px #555;
+    font-size: 20px;
+    padding-top: 10px;
+    background-color: rgba( 255, 255, 255, 0.8 );
 }
 
 .dammed-image-zoom:focus {
@@ -653,6 +655,49 @@ a.page-numbers:hover {
     .dammed-card .media-box {
         height: 180px;
     }
+    .instagram-footer .instagram-date {
+        font-size: xx-small;
+    }
+
+    .dammed-image-zoom, .dammed-image-zoom:visited {
+        top: 5px;
+        right: 5px;
+        width: 20px;
+        height: 15px;
+        border-radius: 10px;
+        font-size: 10px;
+        padding-top: 5px;
+    }
+
+    .instagram-header {
+        border-radius: 4px 4px 0 0;
+    }
+
+    .instagram-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        margin: 5px;
+    }
+
+    .instagram-info {
+        font-size: x-small;
+        margin: 5px 0;
+    }
+
+    .instagram-info a {
+        font-size: xx-small;
+    }
+
+    .instagram-footer {
+        border-radius: 0 0 4px 4px;
+    }
+
+    .instagram-footer p {
+        margin: 5px;
+        font-size: x-small;
+    }
+
     .instagram-footer .instagram-date {
         font-size: xx-small;
     }

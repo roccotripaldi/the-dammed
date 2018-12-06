@@ -100,7 +100,7 @@ function the_dammed_instagram_media() {
 		return;
 	} else if ( $image ) {
 		echo  apply_filters( 'the_content', "<img class='media-main' src='$image' />" );
-		echo "<button class='dashicons dashicons-search dammed-image-zoom' data-img='$image'></button>";
+		echo "<a class='dashicons dashicons-search dammed-image-zoom' data-img='$image'></a>";
 		return;
 	}
 }
