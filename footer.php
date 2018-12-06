@@ -6,7 +6,7 @@
 
 <!-- end dammed-container --></div>
 
-<a id="dammed-button" class="dark-text box-shadow">&triangledown;</a>
+<a id="dammed-button" class="dashicons dashicons-arrow-down-alt box-shadow"></a>
 <div id="dammed-modal"></div>
 <div id="dammed-modal-content"></div>
 <a id="dammed-modal-close" class="dashicons dashicons-no"></a>
