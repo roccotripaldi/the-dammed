@@ -139,7 +139,7 @@ function the_dammed_spotify_album_text( $spotify_info, $album_info ) {
 function the_dammed_instagram_header( $import_object ) {
 	$pic =  $import_object->user->profile_picture;
 	$name = $import_object->user->username;
-	$location = the_dammed_instagram_location();
+	$location = the_dammed_instagram_location( $import_object );
 	echo "<img class='instagram-avatar' src='$pic' /><p class='instagram-info'>$name<br />$location</p>";
 }
 
