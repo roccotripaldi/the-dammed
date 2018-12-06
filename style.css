@@ -642,6 +642,16 @@ a.page-numbers:hover {
 
     }
 
+    .dammed-image-zoom, .dammed-image-zoom:visited {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 21px;
+        border-radius: 14px;
+        font-size: 14px;
+        padding-top: 7px;
+    }
+
     .instagram-footer {
         width: 65%;
         border-radius: 4px;
