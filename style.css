@@ -660,13 +660,13 @@ a.page-numbers:hover {
     }
 
     .dammed-image-zoom, .dammed-image-zoom:visited {
-        top: 5px;
-        right: 5px;
-        width: 20px;
-        height: 15px;
-        border-radius: 10px;
-        font-size: 10px;
-        padding-top: 5px;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 21px;
+        border-radius: 14px;
+        font-size: 14px;
+        padding-top: 7px;
     }
 
     .instagram-header {
@@ -681,12 +681,7 @@ a.page-numbers:hover {
     }
 
     .instagram-info {
-        font-size: x-small;
         margin: 5px 0;
-    }
-
-    .instagram-info a {
-        font-size: xx-small;
     }
 
     .instagram-footer {
@@ -695,11 +690,6 @@ a.page-numbers:hover {
 
     .instagram-footer p {
         margin: 5px;
-        font-size: x-small;
-    }
-
-    .instagram-footer .instagram-date {
-        font-size: xx-small;
     }
 }
 
