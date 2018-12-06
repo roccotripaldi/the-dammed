@@ -56,6 +56,7 @@
 			dammedButton.fadeIn();
 		}
 	}
+
 	function calculateBackgroundColor() {
 		let r, g, b;
 		if ( currentCardIndex === cards.length - 1 ) {
@@ -94,6 +95,20 @@
 			};
 		$( '#date' ).text( date.toLocaleDateString( 'uk-UK', options ) );
 	}
+	function handleZoom( { target: { dataset: { img } } } ) {
+		showModal();
+		setModalContent( `<img src="${ img }" />` );
+	}
+	function setModalContent( content ) {
+		$( '#dammed-modal-content' ).html( content );
+	}
+	function showModal() {
+		$( '#dammed-modal, #dammed-modal-content, #dammed-modal-close' ).css( 'display', 'block' );
+	}
+	function hideModal() {
+		$( '#dammed-modal, #dammed-modal-content, #dammed-modal-close' ).css( 'display', 'none' );
+		$( '#dammed-modal-content' ).html( '' );
+	}
 
 	$( document ).ready( function() {
 		const isSafari = /^((?!chrome|android).)*safari/i.test( navigator.userAgent );
@@ -115,6 +130,8 @@
 			.on( 'click', function() {
 				scrollNext();
 			} );
+		$( '.dammed-image-zoom' ).on( 'click', handleZoom );
+		$( '#dammed-modal-content, #dammed-modal-close' ).on( 'click', hideModal );
 		setInterval( updateClock, 1000 );
 		$window.resize();
 	} );
