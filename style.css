@@ -344,6 +344,10 @@ nav.pagination {
     margin: 50px 0;
 }
 
+.page-numbers.dots {
+    display: none;
+}
+
 .page-numbers {
     padding: 5px 10px;
     border: 1px solid #555;
@@ -655,6 +659,11 @@ a.page-numbers:hover {
     .dammed-card .media-box {
         height: 180px;
     }
+
+    .type-spotify .img-link{
+        width: 250px;
+    }
+
     .instagram-footer .instagram-date {
         font-size: xx-small;
     }

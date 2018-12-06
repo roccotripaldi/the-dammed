@@ -110,6 +110,32 @@ function the_dammed_instagram_media() {
 	}
 }
 
+function the_dammed_spotify_album_art( $spotify_info, $album_info ) {
+	$cover_art = the_dammed_get_first_attachment_url();
+	$cover_alt_text = esc_attr( $album_info['album'] ) . ' by ' . esc_attr( $album_info['artist'] );
+	$img = "<img src='$cover_art' alt='$cover_alt_text' />";
+	if ( empty( $spotify_info ) ) {
+		echo $img;
+		return;
+	}
+	$album_id = $spotify_info['album_id'];
+	echo "<a href='spotify:album:$album_id' class='img-link'>$img</a>";
+}
+
+function the_dammed_spotify_album_text( $spotify_info, $album_info ) {
+	$album = $album_info['album'];
+	$artist = $album_info['artist'];
+
+	if ( empty( $spotify_info ) ) {
+		echo "<em>$album</em> by $artist";
+		return;
+	}
+	$artist_id = $spotify_info['artist_id'];
+	$album_id = $spotify_info['album_id'];
+	echo "<em>$album</em> by <a href='spotify:artist:$artist_id'>$artist</a><br />" .
+	     "<a class='spotify-link' href='spotify:album:$album_id'>Listen on Spotify</a>";
+}
+
 
 /*--------------------------------------------------------------
 4.0 Misc
