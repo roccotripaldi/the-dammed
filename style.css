@@ -658,8 +658,8 @@ a.page-numbers:hover {
     }
 }
 
-/* Targets ipads  */
-@media screen and (min-width: 480px) and (max-width: 840px) {
+/* Targets phones in landscape  */
+@media screen and (max-height: 480px) {
     .type-spotify .dammed-content {
         display: flex;
         justify-content: space-evenly;
