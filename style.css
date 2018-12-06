@@ -422,6 +422,7 @@ a.page-numbers:hover {
     text-align: left;
     line-height: normal;
     color:black;
+    position: relative;
 }
 
 .retweeted-status {
@@ -615,6 +616,12 @@ a.page-numbers:hover {
     background-color: rgba( 255, 255, 255, 0.8 );
 }
 
+.tweet .dammed-image-zoom, .tweet .dammed-image-zoom:visited {
+    top: -20px;
+    right: -20px;
+    background-color: rgba( 255, 255, 255, 1 );
+}
+
 .dammed-image-zoom:focus {
     outline: none;
 }
@@ -650,6 +657,16 @@ a.page-numbers:hover {
         border-radius: 14px;
         font-size: 14px;
         padding-top: 7px;
+    }
+
+    .tweet .dammed-image-zoom, .tweet .dammed-image-zoom:visited {
+        top: -20px;
+        right: -20px;
+        width: 40px;
+        height: 30px;
+        border-radius: 20px;
+        font-size: 20px;
+        padding-top: 10px;
     }
 
     .instagram-footer {

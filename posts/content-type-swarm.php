@@ -15,7 +15,7 @@ $shout = the_dammed_get_foursquare_shout( $post_id, $import_object );
     <div class="dammed-content">
         <div class="media-box">
             <img class="media-main" src="<?php echo $map_src; ?>" />
-            <?php the_dammed_foursquare_photo(); ?>
+            <?php the_dammed_attached_photo(); ?>
 		    <?php if( $shout ): ?>
                 <p class="media-caption"><?php echo $shout ?></p>
 		    <?php endif; ?>

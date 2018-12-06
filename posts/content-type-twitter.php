@@ -10,6 +10,7 @@ $class = $raw_tweet['retweeted'] ? 'retweeted-status' : 'tweeted-status';
 <div class="dammed-card type-twitter" data-type="twitter">
 	<div class="dammed-content">
        <article class="tweet">
+	       <?php the_dammed_attached_photo(); ?>
            <header>
                <?php echo the_dammed_tweet_header( $raw_tweet ); ?>
            </header>

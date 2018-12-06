@@ -84,7 +84,7 @@ function the_dammed_get_first_attachment_url( $type = 'image' ) {
 	return array_values( $media )[0]->guid;
 }
 
-function the_dammed_foursquare_photo() {
+function the_dammed_attached_photo() {
 	$photo = the_dammed_get_first_attachment_url();
 	if ( ! $photo ) {
 		return;
