@@ -371,12 +371,6 @@ a.page-numbers:hover {
 }
 
 @media screen and (min-width: 480px) and (max-width: 840px) {
-    #dammed-date {
-        font-size: 12px;
-        border-radius: 4px;
-        padding: 4px 0;
-    }
-
     header .dammed-content {
         display: flex;
         justify-content: space-evenly;
@@ -386,7 +380,14 @@ a.page-numbers:hover {
     header img {
         width: 20%;
     }
+}
 
+@media screen and (max-width: 840px) {
+    #dammed-date {
+        font-size: 12px;
+        border-radius: 4px;
+        padding: 4px 0;
+    }
     #dammed-button {
         width: 30px;
         height: 30px;
