@@ -4,7 +4,8 @@
 			spotify: [ 0, 0, 0 ],
 			rocco: [ 144, 144, 144 ],
 			swarm: [ 243, 169, 77 ],
-			instagram: [ 188, 0, 178 ]
+			instagram: [ 188, 0, 178 ],
+			pocket: [ 239, 64, 86 ]
 		},
 		scrollDuration = 1000,
 		scrollAnimationType = 'swing';

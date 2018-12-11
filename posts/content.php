@@ -6,6 +6,8 @@
 	<?php get_template_part( 'posts/content-type-swarm' ); ?>
 <?php elseif( the_dammed_is_post_instagram_type() ) : ?>
     <?php get_template_part( 'posts/content-type-instagram' ); ?>
+<?php elseif( the_dammed_is_post_pocket_type() ) : ?>
+	<?php get_template_part( 'posts/content-type-pocket' ); ?>
 <?php else: ?>
 	<div class="dammed-card" data-type="rocco">
 		<div class="dammed-content">
@@ -13,6 +15,4 @@
 		</div>
 	</div>
 <?php endif; ?>
-
-
 

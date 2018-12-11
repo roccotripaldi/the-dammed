@@ -76,6 +76,10 @@ function the_dammed_is_post_instagram_type() {
 	return has_term( 'instagram', 'category' );
 }
 
+function the_dammed_is_post_pocket_type() {
+	return has_term( 'pocket', 'category' );
+}
+
 function the_dammed_get_first_attachment_url( $type = 'image' ) {
 	$media = get_attached_media( $type );
 	if ( empty( $media ) ) {
@@ -143,6 +147,60 @@ function the_dammed_instagram_header( $import_object ) {
 	echo "<img class='instagram-avatar' src='$pic' /><p class='instagram-info'>$name<br />$location</p>";
 }
 
+function the_dammed_pocket_title( $link ) {
+	$url = the_dammed_pocket_url( $link );
+	$title = $url;
+	if ( $link['resolved_title'] ) {
+		$title = $link['resolved_title'];
+	} elseif ( $link['given_title'] ) {
+		$title = $link['given_title'];
+	}
+	echo "<a href='$url' target='_blank'>$title</a>";
+}
+
+function the_dammed_pocket_footer( $link ) {
+	$text = 'Visit';
+	$icon = '';
+	$url = the_dammed_pocket_url( $link );
+
+	if ( $link['domain_metadata'] && $link['domain_metadata']['name'] ) {
+		$text = $link['domain_metadata']['name'];
+	}
+
+	if ( $link['domain_metadata'] && $link['domain_metadata']['logo'] ) {
+		$src = $link['domain_metadata']['logo'];
+		$icon = "<a href='$url' target='_blank' class='icon-link'><img src='$src' /></a>";
+	}
+
+	echo "$icon<a href='$url' target='_blank' class='domain-link'>$text</a>";
+}
+
+function the_dammed_pocket_content( $link ) {
+	l( '--------------- the link!', $link );
+	$url = the_dammed_pocket_url( $link );
+
+	if ( the_dammed_pocket_is_youtube( $link ) ) {
+		$video = the_dammed_pocket_first_video( $link );
+		echo apply_filters( 'the_content', $video['src'] );
+		return;
+	}
+
+	if ( $link['has_image'] && $link['image'] ) {
+		$src = $link['image']['src'];
+		echo "<a href='$url' class='media-box' target='_blank'><img src='$src' class='media-main' /></a>";
+		return;
+	}
+
+	if ( $link['excerpt'] ) {
+		echo "<div class='pocket-content-excerpt'>";
+		echo "<p>" . $link['excerpt'] . "</p>";
+		echo "<p class='pocket-content-read-more'><a href='$url' target='_blank'>Read more...</a></p>";
+		echo "</div>";
+		return;
+	}
+
+	echo "<a href='$url' target='_blank' class='pocket-empty-content dashicons dashicons-admin-links'></a>";
+}
 
 /*--------------------------------------------------------------
 4.0 Misc
@@ -365,4 +423,26 @@ function the_dammed_instagram_location( $import_object ) {
 	$name = $import_object->location->name;
 	$url_name = sanitize_title( $name );
 	return "<a href='https://www.instagram.com/explore/locations/$id/$url_name' target='_blank'>$name</a>";
+}
+
+function the_dammed_pocket_url( $link ) {
+	if ( $link['resolved_url'] ) {
+		return $link['resolved_url'];
+	}
+	return $link['given_url'];
+}
+
+function the_dammed_pocket_first_video( $link ) {
+	return array_shift(array_values( $link['videos'] ) );
+}
+
+function the_dammed_pocket_has_video( $link ) {
+	return $link['has_video'] && ! empty( $link['videos'] );
+}
+
+function the_dammed_pocket_is_youtube( $link ) {
+	if ( ! the_dammed_pocket_has_video( $link ) ) {
+		return false;
+	}
+	return ( $link['domain_metadata'] && $link['domain_metadata']['name'] && 'YouTube' === $link['domain_metadata']['name'] );
 }
