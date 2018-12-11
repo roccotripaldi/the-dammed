@@ -176,7 +176,6 @@ function the_dammed_pocket_footer( $link ) {
 }
 
 function the_dammed_pocket_content( $link ) {
-	l( '--------------- the link!', $link );
 	$url = the_dammed_pocket_url( $link );
 
 	if ( the_dammed_pocket_is_youtube( $link ) ) {
