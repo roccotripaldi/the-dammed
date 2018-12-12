@@ -12,12 +12,11 @@
 ?>
 <div class="dammed-card type-spotify" data-type="spotify">
     <div class="dammed-content">
-        <?php the_dammed_spotify_album_art( $spotify_info, $album_info ); ?>
-        <p>
-            On <?php the_date( 'M j, Y' ); ?>,<br />
-            <a href="<?php echo $roccos_spotify_profile_link; ?>">Rocco</a> listened to:<br />
+        <p class="card-meta">
+            <span class="intro">On <?php the_time( 'Y-m-d' ); ?>, <a href="<?php echo $roccos_spotify_profile_link; ?>">Rocco</a> played:</span>
             <?php the_dammed_spotify_album_text( $spotify_info, $album_info ); ?>
         </p>
+        <?php the_dammed_spotify_album_art( $spotify_info, $album_info ); ?>
     </div>
 </div>
 

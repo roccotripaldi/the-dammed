@@ -131,13 +131,13 @@ function the_dammed_spotify_album_text( $spotify_info, $album_info ) {
 	$artist = $album_info['artist'];
 
 	if ( empty( $spotify_info ) ) {
-		echo "<em>$album</em> by $artist";
+		echo "<span><i>$album</i> by $artist</span>";
 		return;
 	}
 	$artist_id = $spotify_info['artist_id'];
 	$album_id = $spotify_info['album_id'];
-	echo "<em>$album</em> by <a href='spotify:artist:$artist_id'>$artist</a><br />" .
-	     "<a class='spotify-link' href='spotify:album:$album_id'>Listen on Spotify</a>";
+	echo "<span><i>$album</i> by <a href='spotify:artist:$artist_id'>$artist</a></span>" .
+	     "<span class='link'><a class='spotify-link' href='spotify:album:$album_id'>Listen on Spotify</a></span>";
 }
 
 function the_dammed_instagram_header( $import_object ) {

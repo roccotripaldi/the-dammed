@@ -22,6 +22,12 @@ Text Domain: the-dammed
 1.0 Normalize
 Styles based on Normalize v5.0.0 @link https://github.com/necolas/normalize.css
 --------------------------------------------------------------*/
+@font-face {
+    font-family: system;
+    font-style: normal;
+    font-weight: 300;
+    src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
 
 html {
     font-family: sans-serif;
@@ -402,6 +408,31 @@ a.page-numbers:hover {
 /*--------------------------------------------------------------
 4.0 Cards
 --------------------------------------------------------------*/
+.type-instagram, .type-twitter, .type-swarm, .type-spotify {
+    font-family: 'system';
+}
+
+.card-meta {
+    text-align: left;
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto 20px auto;
+}
+
+.card-meta span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card-meta .intro {
+    font-size: small;
+    font-style: italic;
+}
+
+.card-meta .link {
+    font-size: small;
+}
+
 .dammed-card {
     width: 94%;
     padding: 0 3%;
@@ -523,11 +554,6 @@ a.page-numbers:hover {
     text-decoration: underline;
 }
 
-.type-spotify p {
-    font-size: small;
-    line-height: 25px;
-}
-
 .type-spotify img {
     width: 300px;
     border: 1px solid #FFF;
@@ -537,6 +563,10 @@ a.page-numbers:hover {
 .type-spotify .img-link{
     width: 300px;
     margin: 0 auto;
+}
+
+.type-spotify .card-meta {
+    max-width: 300px;
 }
 
 .type-spotify .img-link img {
@@ -578,7 +608,7 @@ a.page-numbers:hover {
 }
 
 .instagram-info a {
-    font-size: x-small;
+    font-size: small;
     cursor: pointer;
 }
 
@@ -603,7 +633,7 @@ a.page-numbers:hover {
 }
 
 .instagram-footer .instagram-date {
-    font-size: x-small;
+    font-size: small;
 }
 
 .dammed-image-zoom, .dammed-image-zoom:visited {
@@ -647,6 +677,10 @@ a.page-numbers:hover {
     line-height: normal;
     color:black;
     font-family: proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.type-pocket .card-meta {
+    max-width: 440px;
 }
 
 .type-pocket article p {
@@ -789,16 +823,22 @@ a.page-numbers:hover {
     }
 
     .type-spotify img {
+        order: 1;
         width: 30%;
     }
 
     .type-spotify .img-link {
+        order: 1;
         width: 30%;
         margin: unset;
     }
 
     .type-spotify .img-link img {
         width: 100%;
+    }
+
+    .type-spotify .card-meta {
+        order: 2;
     }
 
     .type-swarm .dammed-content  {
@@ -812,6 +852,10 @@ a.page-numbers:hover {
         margin: unset;
         height: auto;
     }
+
+    .dammed-card.type-swarm .card-meta {
+        width: 45%;
+     }
 
     .dammed-card .media-box .media-caption {
         font-size: x-small;
